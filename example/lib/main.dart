@@ -21,31 +21,43 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  FocusNode _focusNode = FocusNode();
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
+      home: GestureDetector(
+        onTap: () => _focusNode.unfocus(),
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Plugin example app'),
+          ),
+          body:  ToastMsgMain(
+            position: ToastPosition.bottom,
+            // positionValue: 200,
+            child:  Column(
+              children: [
+                const Expanded(
+                  child: Center(
+                  child: Text('Hello!'),
+                        ),
+                ),
+                TextField(autofocus: true, decoration: InputDecoration(border: OutlineInputBorder()), focusNode: _focusNode,)
+              ],
+            )),
+          floatingActionButton: ElevatedButton(onPressed: (){
+            ToastMsgStream.instance.showToast(
+              ToastData(
+                // title: 'Test Msg', 
+                customTitle: _buildCustomTitle(),
+                backgroundColor: Colors.green, 
+                titleStyle: const TextStyle(color: Colors.white),
+                iconWidget: Icon(Icons.info)
+              ),
+            );
+          }, child: const Icon(Icons.publish)),
         ),
-        body: const ToastMsgMain(
-          position: ToastPosition.top,
-          // positionValue: 200,
-          child:  Center(
-          child: Text('Hello!'),
-        )),
-        floatingActionButton: ElevatedButton(onPressed: (){
-          ToastMsgStream.instance.showToast(
-            ToastData(
-              // title: 'Test Msg', 
-              customTitle: _buildCustomTitle(),
-              backgroundColor: Colors.green, 
-              titleStyle: const TextStyle(color: Colors.white),
-              iconWidget: Icon(Icons.info)
-            ),
-          );
-        }, child: const Icon(Icons.publish)),
       ),
     );
   }

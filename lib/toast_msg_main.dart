@@ -63,41 +63,43 @@ class _WidgetState extends State<ToastMsgMain> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-            children: [
-              widget.child,
-              if (_toastBody != null) ... [
-                if (widget.position == ToastPosition.center)
-                  Align(
-                    alignment: Alignment.center,
-                    child: ToastMessageWidget(
-                      margin: widget.margin,
-                      borderRadius: widget.borderRadius,
-                      data: _toastBody!, 
-                      onHide: () => setState(() {
-                        _toastBody = null;
-                        _timer?.cancel();
+    return Scaffold(
+      body: Stack(
+              children: [
+                widget.child,
+                if (_toastBody != null) ... [
+                  if (widget.position == ToastPosition.center)
+                    Align(
+                      alignment: Alignment.center,
+                      child: ToastMessageWidget(
+                        margin: widget.margin,
+                        borderRadius: widget.borderRadius,
+                        data: _toastBody!, 
+                        onHide: () => setState(() {
+                          _toastBody = null;
+                          _timer?.cancel();
+                          },
+                        ),
+                      ),
+                    )
+                  else 
+                    Positioned(
+                      top: widget.position == ToastPosition.top ? widget.positionValue : null,
+                      bottom: widget.position == ToastPosition.bottom ? widget.positionValue : null,
+                      child: ToastMessageWidget(
+                        margin: widget.margin,
+                        borderRadius: widget.borderRadius,
+                        data: _toastBody!, 
+                        onHide: () => setState(() {
+                          _toastBody = null;
+                          _timer?.cancel();
                         },
                       ),
                     ),
-                  )
-                else 
-                  Positioned(
-                    top: widget.position == ToastPosition.top ? widget.positionValue : null,
-                    bottom: widget.position == ToastPosition.bottom ? widget.positionValue : null,
-                    child: ToastMessageWidget(
-                      margin: widget.margin,
-                      borderRadius: widget.borderRadius,
-                      data: _toastBody!, 
-                      onHide: () => setState(() {
-                        _toastBody = null;
-                        _timer?.cancel();
-                      },
-                    ),
                   ),
-                ),
-              ]
-        ],
-      );
+                ]
+          ],
+        ),
+    );
   }
 }
