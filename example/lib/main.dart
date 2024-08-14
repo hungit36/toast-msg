@@ -35,6 +35,7 @@ class _MyAppState extends State<MyApp> {
           ),
           body:  ToastMsgMain(
             position: ToastPosition.bottom,
+            margin: EdgeInsets.symmetric(horizontal: 16),
             // positionValue: 200,
             child:  Column(
               children: [

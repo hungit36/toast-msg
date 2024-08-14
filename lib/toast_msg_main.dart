@@ -67,7 +67,7 @@ class _WidgetState extends State<ToastMsgMain> {
       body: Stack(
               children: [
                 widget.child,
-                if (_toastBody != null) ... [
+                if (_toastBody != null && (_toastBody?.title.isNotEmpty == true || _toastBody?.customTitle != null)) ... [
                   if (widget.position == ToastPosition.center)
                     Align(
                       alignment: Alignment.center,

@@ -19,7 +19,7 @@ class ToastMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final w = MediaQuery.of(context).size.width;
+    final w = MediaQuery.of(context).size.width - margin.left - margin.right;
     return GestureDetector(
       onVerticalDragUpdate: (details) {
         int sensitivity = 8;
