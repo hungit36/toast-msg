@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  FocusNode _focusNode = FocusNode();
+  final _focusNode = FocusNode();
 
 
   @override
@@ -34,8 +34,7 @@ class _MyAppState extends State<MyApp> {
             title: const Text('Plugin example app'),
           ),
           body:  ToastMsgMain(
-            position: ToastPosition.bottom,
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             // positionValue: 200,
             child:  Column(
               children: [
@@ -44,7 +43,7 @@ class _MyAppState extends State<MyApp> {
                   child: Text('Hello!'),
                         ),
                 ),
-                TextField(autofocus: true, decoration: InputDecoration(border: OutlineInputBorder()), focusNode: _focusNode,)
+                TextField(autofocus: true, decoration: const InputDecoration(border: OutlineInputBorder()), focusNode: _focusNode,)
               ],
             )),
           floatingActionButton: ElevatedButton(onPressed: (){
@@ -54,7 +53,7 @@ class _MyAppState extends State<MyApp> {
                 customTitle: _buildCustomTitle(),
                 backgroundColor: Colors.green, 
                 titleStyle: const TextStyle(color: Colors.white),
-                iconWidget: Icon(Icons.info)
+                iconWidget: const Icon(Icons.info)
               ),
             );
           }, child: const Icon(Icons.publish)),
@@ -66,15 +65,15 @@ class _MyAppState extends State<MyApp> {
   Widget _buildCustomTitle() {
     return Text.rich(
                 TextSpan(
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   children: [
-                    TextSpan(
+                    const TextSpan(
                       text: 'Msg content',
                     ),
                     const TextSpan(text: ' '),
                     TextSpan(
                       text: 'click here!',
-                      style: TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           debugPrint('click here! tapped');
